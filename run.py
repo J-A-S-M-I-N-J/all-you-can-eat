@@ -19,6 +19,7 @@ babylon = SHEET.worksheet('Babylon')
 yazhou = SHEET.worksheet('Yazhou')
 mommes = SHEET.worksheet('Mommes')
 libanesiska = SHEET.worksheet('Libanesiska')
+inputValues = SHEET.worksheet('inputValues')
 
 nata_score = nata.get_all_values()
 paradis_score = paradis.get_all_values()
@@ -28,7 +29,29 @@ yazhou_score = yazhou.get_all_values()
 mommes_score = mommes.get_all_values()
 libanesiska_score = libanesiska.get_all_values()
 
-print(nata_score)
+def get_name():
+    while True:
+        print("Are you hungry? Let us help you with that.\n")
+        name_str = input("But first, enter your name:\n ")
+        if  name_str.isalpha():
+            inputValues.append_row([name_str])
+            print(f"Okay then, {name_str}! Let's get started.\n")
+            break
+
+        else:
+        
+            print("I don't have all day... Name please:\n")
+
+print (get_name())
+
+
+
+
+
+
+
+
+
 
 # Display list of cities and validate their choice
 
@@ -46,8 +69,8 @@ print(nata_score)
 # Repeat until user has viewed the scores for all restaurants, 
 # or until they decide on the restaurant and exit the program.
 
-# When user has decided on a restaurant, ask them for name and where they will eat and then exit the program.
+# When user has decided on a restaurant, ask them where they will eat and then exit the program.
 
-# Validate their answer, and save restaurant where they will eat + name in a tab in the spreadsheet.
+# Validate their answer, and save restaurant where they will eat in a tab in the spreadsheet.
 
 
