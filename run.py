@@ -149,13 +149,16 @@ def display_scores(city_str, restaurant_str):
     return
 
 def get_list():
-    score_list = (nata_score, paradis_score, frikkos_score, babylon_score, yazhou_score, mommes_score, libanesiska_score)
-    print(score_list)
-    columns = []
-    for columns in range(1, 5):
-        break
-    return columns
-
+    """
+    Takes the data values from restaurant_score and lists them
+    Will be used to calculate the average score
+    And make the data more readable
+    """
+    score_list = (nata_score, paradis_score, frikkos_score, babylon_score,\
+         yazhou_score, mommes_score, libanesiska_score)
+    for k, v in list(score_list)():
+        print(k, v)
+ 
 def main():
     """
     Run all program functions
@@ -164,7 +167,7 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
-    score_list = get_list()
+    get_list()
 
 
 main()
@@ -172,12 +175,16 @@ main()
 
 
 
+#              print(tabulate(nata.get_all_values()))
 
 
+# from tabulate import tabulate
 
-
-
-
+#    # print(score_list)
+    # columns = []
+    # for columns in range(1, 5):
+    #     break
+    # return columns
 
 # Display list of cities and validate their choice
 
