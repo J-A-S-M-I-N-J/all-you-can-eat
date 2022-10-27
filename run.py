@@ -29,18 +29,28 @@ yazhou_score = yazhou.get_all_values()
 mommes_score = mommes.get_all_values()
 libanesiska_score = libanesiska.get_all_values()
 
-def get_name():
-    while True:
-        print("Are you hungry? Let us help you with that.\n")
-        name_str = input("But first, enter your name:\n ")
-        if  name_str.isalpha():
-            inputValues.append_row([name_str])
-            print(f"Okay then, {name_str}! Let's get started.\n")
-            break
+print("Are you hungry? Let us help you with that.\n")
 
+def get_name():
+    name_str = input("But first, enter your name:\n ")
+    while True:
+        if  name_str.isalpha() == True:
+            print(f"Okay then, {name_str}! Let's get started.\n")
+            inputValues.append_row([name_str])
+            break
+           
         else:
-        
-            print("I don't have all day... Name please:\n")
+            print("I don't have all day...\n")
+            name_str = input("Name please:\n ")
+
+        if  name_str.isalpha():
+            print(f"Okay then, {name_str}! Let's get started.\n")
+            inputValues.append_row([name_str])
+            break
+            
+        else:
+            print("No soup for you!\n")
+            break
 
 print (get_name())
 
