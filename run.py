@@ -30,6 +30,9 @@ yazhou_score = yazhou.get_all_values()
 mommes_score = mommes.get_all_values()
 libanesiska_score = libanesiska.get_all_values()
 
+score_list = nata_score, paradis_score, frikkos_score, babylon_score, \
+yazhou_score, mommes_score, libanesiska_score
+
 
 
 print("Are you hungry? Let us help you with that.\n")
@@ -117,7 +120,7 @@ def get_restaurant():
 # print (get_restaurant())
 
 def display_scores(city_str, restaurant_str):
-    """Displays the scores for the selected restaurant"""
+    """Displays the scores for the selected restaurant""" # replicate data, 
     restaurant_score = (city_str, restaurant_str)
     print(restaurant_score)
 
@@ -125,26 +128,33 @@ def display_scores(city_str, restaurant_str):
         if   city_str == "1" and restaurant_str == "1":
              print(nata.get_all_values())
              break
-        elif city_str == "1" and restaurant_str == "2":
+        elif restaurant_str == "2":
              print(paradis.get_all_values())
              break
-        elif city_str == "1" and restaurant_str == "3":
+        elif restaurant_str == "3":
              print(frikkos.get_all_values())
              break
-        elif city_str == "1" and restaurant_str == "4":
+        elif restaurant_str == "4":
              print(babylon.get_all_values())
              break
-        elif city_str == "1" and restaurant_str == "5":
+        elif restaurant_str == "5":
              print(yazhou.get_all_values())
              break
-        elif city_str == "1" and restaurant_str == "6":
+        elif restaurant_str == "6":
              print(mommes.get_all_values())
              break
-        elif city_str == "1" and restaurant_str == "7":
+        elif restaurant_str == "7":
              print(libanesiska.get_all_values())
              break
     return
 
+def get_list():
+    score_list = (nata_score, paradis_score, frikkos_score, babylon_score, yazhou_score, mommes_score, libanesiska_score)
+    print(score_list)
+    columns = []
+    for columns in range(1, 5):
+        break
+    return columns
 
 def main():
     """
@@ -154,6 +164,8 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
+    score_list = get_list()
+
 
 main()
 
