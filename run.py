@@ -64,20 +64,20 @@ def get_name():
 def get_city():
     """Gets the city from the user
     and then displays the restaurants in that city"""
-    city_str = input("Where are you located? Enter a number:\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
+    city_str = input("Where are you located? Enter a number:\n 1. Helsingborg\n 2. Placeholder\n 3. Placeholder2\n ")
     while True:
         if city_str == "1":
             print("You have chosen Helsingborg. Here are the restaurants in Helsingborg:\n")
             break
         elif city_str == "2":
-            print("You have chosen Göteborg. Here are the restaurants in Göteborg:\n")
+            print("You have chosen Göteborg. Here are the restaurants in Placeholder:\n")
             break
         elif city_str == "3":
-            print("You have chosen Malmö. Here are the restaurants in Malmö:\n")
+            print("You have chosen Malmö. Here are the restaurants in Placeholder2:\n")
             break
         else:
             print("Try again, please select a number between 1-3\n")
-            city_str = input("City?\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
+            city_str = input("City?\n 1. Helsingborg\n 2. Placeholder\n 3. Placeholder2\n ")
             continue
     return city_str
 
@@ -114,26 +114,37 @@ def get_restaurant():
             continue
     return restaurant_str
 
+# print (get_restaurant())
+
 def display_scores(city_str, restaurant_str):
     """Displays the scores for the selected restaurant"""
     restaurant_score = (city_str, restaurant_str)
     print(restaurant_score)
 
     while True:
-        if  get_city() == "1" and get_restaurant() == "1":
-            print(nata.get_all_values())
-        elif get_city() == "1" and get_restaurant() == "2":
-            print(paradis.get_all_values())
-        elif get_city() == "1" and get_restaurant() == "3":
-            print(frikkos.get_all_values())
-        elif get_city() == "1" and get_restaurant() == "4":
-            print(babylon.get_all_values())
-        elif get_city() == "1" and get_restaurant() == "5":
-            print(yazhou.get_all_values())
-        elif get_city() == "1" and get_restaurant() == "6":
-            print(mommes.get_all_values())
-        elif get_city() == "1" and get_restaurant() == "7":
-            print(libanesiska.get_all_values())
+        if   city_str == "1" and restaurant_str == "1":
+             print(nata.get_all_values())
+             break
+        elif city_str == "1" and restaurant_str == "2":
+             print(paradis.get_all_values())
+             break
+        elif city_str == "1" and restaurant_str == "3":
+             print(frikkos.get_all_values())
+             break
+        elif city_str == "1" and restaurant_str == "4":
+             print(babylon.get_all_values())
+             break
+        elif city_str == "1" and restaurant_str == "5":
+             print(yazhou.get_all_values())
+             break
+        elif city_str == "1" and restaurant_str == "6":
+             print(mommes.get_all_values())
+             break
+        elif city_str == "1" and restaurant_str == "7":
+             print(libanesiska.get_all_values())
+             break
+    return
+
 
 def main():
     """
@@ -145,6 +156,11 @@ def main():
     display_scores(city, restaurant)
 
 main()
+
+
+
+
+
 
 
 
