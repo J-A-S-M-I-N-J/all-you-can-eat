@@ -32,6 +32,8 @@ libanesiska_score = libanesiska.get_all_values()
 print("Are you hungry? Let us help you with that.\n")
 
 def get_name():
+    """Gets the name from the user
+    and adds the input to google sheet"""
     name_str = input("But first, enter your name:\n ")
     while True:
         if  name_str.isalpha() == True:
@@ -51,12 +53,44 @@ def get_name():
         else:
             print("No soup for you!\n")
             break
+        
+    return name_str
 
-print (get_name())
+# print(get_name())
 
+def get_city():
+    """Gets the city from the user
+    and then displays the restaurants in that city"""
+    city_str = input("Where are you located? Enter a number:\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
+    while True:
+        if city_str == "1":
+            print("Here are the restaurants in Helsingborg:\n")
+            print("1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n")
+            break
+        elif city_str == "2":
+            print("Here are the restaurants in Göteborg:\n")
+            print("1. Babylon\n2. Yazhou\n3. Mommes\n")
+            break
+        elif city_str == "3":
+            print("Here are the restaurants in Malmö:\n")
+            print("1. Libanesiska\n")
+            break
+        else:
+            print("Try again, please select a number between 1-3\n")
+            city_str = input("City?\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
+            continue
+    return city_str
 
+# print(get_city())
 
+def main():
+    """
+    Run all program functions
+    """
+    get_name()
+    get_city()
 
+main()
 
 
 
