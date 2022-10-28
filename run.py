@@ -14,13 +14,13 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_fastfood_survey')
 
-nata = SHEET.worksheet('Nata')
-paradis = SHEET.worksheet('Paradis')
-frikkos = SHEET.worksheet('Frikkos')
-babylon = SHEET.worksheet('Babylon')
-yazhou = SHEET.worksheet('Yazhou')
-mommes = SHEET.worksheet('Mommes')
-libanesiska = SHEET.worksheet('Libanesiska')
+nata = SHEET.worksheet('nata')
+paradis = SHEET.worksheet('paradis')
+frikkos = SHEET.worksheet('frikkos')
+babylon = SHEET.worksheet('babylon')
+yazhou = SHEET.worksheet('yazhou')
+mommes = SHEET.worksheet('mommes')
+libanesiska = SHEET.worksheet('libanesiska')
 inputValues = SHEET.worksheet('inputValues')
 
 nata_score = nata.get_all_values()
@@ -127,9 +127,7 @@ def display_scores(city_str, restaurant_str):
     while True:
         if   city_str == "1" and restaurant_str == "1":
              print(tabulate(nata_score, tablefmt="grid"))
-             #print(tabulate(nata.get_all_values()))
-             return
-             #break
+             break
         elif restaurant_str == "2":
              print(tabulate(paradis_score, tablefmt="grid"))
              break
@@ -150,28 +148,120 @@ def display_scores(city_str, restaurant_str):
              break   
     return
 
+
+################################
+
+#def update_restaurant_data(nata, paradis, frikkos, babylon, yazhou, mommes, libanesiska):
+   # """Updates the restaurant data in google sheet"""
+   # print("Updating restaurant data...\n")
+   # nata.append_row(av_score)
+   # paradis.append_row(av_score)
+   # frikkos.append_row(av_score)
+   # babylon.append_row(av_score)
+   # yazhou.append_row(av_score)
+   # mommes.append_row(av_score)
+   # libanesiska.append_row(av_score)
+
+  #  print("Restaurant data updated successfully.\n")
+
+################################
+
  #def get_list():
-    """
-    Takes the data values from restaurant_score and lists them
-    Will be used to calculate the average score
-    And make the data more readable
-    """
-   # score_list = (nata_score, paradis_score, frikkos_score, babylon_score,\
+   # """
+   # Takes the data values from restaurant_score and lists them
+   # Will be used to calculate the average score
+   # And make the data more readable for the user"""
+    # score_list = (nata_score, paradis_score, frikkos_score, babylon_score,\
         # yazhou_score, mommes_score, libanesiska_score)
-   # for k, v in list(score_list)():
+    # for k, v in list(score_list)():
     #    print(k, v)
+################################
+
 
 def get_average():
-    """Gets the average score for the selected restaurant"""
-    new_restaurant_score = []
-    for new_score in nata_score:
-        new_score = [int(num)for num in (nata_score)]
-        average = sum(new_score) / len(nata_score)
-        new_restaurant_score = average
-        return(new_restaurant_score)
+    """ gets avg score """
+    total_score = 0
+    for i in range(len((nata_score))):
+        total_score += i
+        avg_score = total_score / len(nata_score)
+        nata.append_row([avg_score])
+    return avg_score
+    
+    
+print(get_average)
 
-    new_restaurant_score.append(display_scores)
-    print(new_restaurant_score) 
+
+#def get_average():
+    # """ gets avg score """
+  #  list_of_lists = [[nata_score], [paradis_score], [frikkos_score], [babylon_score], [yazhou_score], [mommes_score], [libanesiska_score]]
+ #   for i in list_of_lists:
+   #     for j in i:
+     #       for k in j:
+       #         print(k)
+        #        print(sum(k)/len(k))
+         #       append_row([sum(k)/len(k)])
+   # return
+
+################################
+
+#def get_average():
+   # """Average score of lists"""
+  #  calc_avg = [xxx]
+    #print(range(len((nata_score))))
+    #for xxx in range(len((nata_score))):
+      #  xxx = [int() for num in nata_score]
+      #  average = sum()/len(nata_score)
+       # calc_avg = average
+      #  calc_avg.append.nata(calc_avg)
+       # return(calc_avg)
+  #  print("hope this  working")
+
+################################
+
+#def get_average():
+   # """Gets the average score for the selected restaurant"""
+  #  lst = []
+   # for ind in range(len(nata_score)):
+     #   num = ???
+     #   average = sum(num)/len(nata_score)
+     #   lst.append(average)
+     #   return(lst)
+  #  print(get_average())
+
+################################
+
+    #for n in (range(len((nata_score)))):
+    #numbers = int(input('Enter number '))
+    #lst.append(numbers)
+#print("Sum of elements in given list is :", sum(lst))
+
+################################
+
+#def get_average():
+ #   """Calculates the average score for the selected restaurant"""
+   # print("calc avg wait")
+   # new_score = nata_score
+   # new_score = int(new_score)
+   # print(new_score)
+   # for i in [nata_score]:
+       # new_score += int(i)     
+        #average_score = new_score / len(new_score)
+        #print(average_score)
+       # return(average_score)
+################################
+
+#def get_average():
+#   """Gets the average score for the selected restaurant"""
+#  new_restaurant_score = []
+    #   for new_score in nata_score:
+    #      new_score = [int(num)for num in (nata_score)]
+    #      average = sum(new_score) / len(nata_score)
+    #      new_restaurant_score = average
+    #      return(new_restaurant_score)
+
+    #  new_restaurant_score.append(display_scores)
+    # print(new_restaurant_score) 
+################################
 
 def main():
     """
@@ -181,25 +271,14 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
-    #get_list()
-   # get_average(score_list, restaurant_score)
-    
+    get_average()
 
 main()
 
 
 
 
-#              print(tabulate(nata.get_all_values()))
 
-
-# from tabulate import tabulate
-
-#    # print(score_list)
-    # columns = []
-    # for columns in range(1, 5):
-    #     break
-    # return columns
 
 # Display list of cities and validate their choice
 
@@ -220,5 +299,3 @@ main()
 # When user has decided on a restaurant, ask them where they will eat and then exit the program.
 
 # Validate their answer, and save restaurant where they will eat in a tab in the spreadsheet.
-
-
