@@ -177,19 +177,36 @@ def display_scores(city_str, restaurant_str):
     #    print(k, v)
 ################################
 
+def average_score(nata):
+    """Calculates the average score for the selected restaurant"""
+    nata = [3,5,3,4,5]
+    sum_of_list = 0
+    for i in range(len(nata)):
+        sum_of_list += nata[i]
+        average = sum_of_list / len(nata)
+    average = average_score(nata)
+    return average
 
-def get_average():
-    """ gets avg score """
-    total_score = 0
-    for i in range(len((nata_score))):
-        total_score += i
-        avg_score = total_score / len(nata_score)
-        nata.append_row([avg_score])
-    return avg_score
+
+
+
+
+
+################################
+
+#def get_average():
+   # """ gets avg score """
+    #total_score = 0
+    #for i in range(len((nata_score))):
+       # total_score += i
+       # avg_score = total_score / len(nata_score)
+      #  nata.append_row([avg_score])
+   # return avg_score
     
     
-print(get_average)
+#print(get_average)
 
+################################
 
 #def get_average():
     # """ gets avg score """
@@ -271,7 +288,7 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
-    get_average()
+    average_score(nata)
 
 main()
 
