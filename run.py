@@ -120,45 +120,59 @@ def get_restaurant():
 # print (get_restaurant())
 
 def display_scores(city_str, restaurant_str):
-    """Displays the scores for the selected restaurant""" # replicate data, 
-    restaurant_score = (city_str, restaurant_str)
-    print(restaurant_score)
+    """Displays the scores for the selected restaurant
+    also has the tabulate library applied to make it look nice""" # replicate data 
+    print("Here are the scores for the selected restaurant:\n")
 
     while True:
         if   city_str == "1" and restaurant_str == "1":
-             print(tabulate(nata.get_all_values()))
-             break
+             print(tabulate(nata_score, tablefmt="grid"))
+             #print(tabulate(nata.get_all_values()))
+             return
+             #break
         elif restaurant_str == "2":
-             print(tabulate(paradis.get_all_values()))
+             print(tabulate(paradis_score, tablefmt="grid"))
              break
         elif restaurant_str == "3":
-             print(tabulate(frikkos.get_all_values()))
+             print(tabulate(frikkos_score, tablefmt="grid"))
              break
         elif restaurant_str == "4":
-             print(tabulate(babylon.get_all_values()))
+             print(tabulate(babylon_score, tablefmt="grid"))
              break
         elif restaurant_str == "5":
-             print(tabulate(yazhou.get_all_values()))
+             print(tabulate(yazhou_score, tablefmt="grid"))
              break
         elif restaurant_str == "6":
-             print(tabulate(mommes.get_all_values()))
+             print(tabulate(mommes_score, tablefmt="grid"))
              break
         elif restaurant_str == "7":
-             print(tabulate(libanesiska.get_all_values()))
-             break
+             print(tabulate(libanesiska_score, tablefmt="grid"))
+             break   
     return
 
-def get_list():
+ #def get_list():
     """
     Takes the data values from restaurant_score and lists them
     Will be used to calculate the average score
     And make the data more readable
     """
-    score_list = [nata_score, paradis_score, frikkos_score, babylon_score,\
-         yazhou_score, mommes_score, libanesiska_score]
-    for k, v in list[score_list]():
-        print(k, v)
- 
+   # score_list = (nata_score, paradis_score, frikkos_score, babylon_score,\
+        # yazhou_score, mommes_score, libanesiska_score)
+   # for k, v in list(score_list)():
+    #    print(k, v)
+
+def get_average():
+    """Gets the average score for the selected restaurant"""
+    new_restaurant_score = []
+    for new_score in nata_score:
+        new_score = [int(num)for num in (nata_score)]
+        average = sum(new_score) / len(nata_score)
+        new_restaurant_score = average
+        return(new_restaurant_score)
+
+    new_restaurant_score.append(display_scores)
+    print(new_restaurant_score) 
+
 def main():
     """
     Run all program functions
@@ -167,8 +181,9 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
-    get_list()
-
+    #get_list()
+   # get_average(score_list, restaurant_score)
+    
 
 main()
 
