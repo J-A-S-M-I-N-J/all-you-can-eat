@@ -1,4 +1,5 @@
 from email.headerregistry import HeaderRegistry
+from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -30,8 +31,7 @@ yazhou_score = yazhou.get_all_values()
 mommes_score = mommes.get_all_values()
 libanesiska_score = libanesiska.get_all_values()
 
-score_list = nata_score, paradis_score, frikkos_score, babylon_score, \
-yazhou_score, mommes_score, libanesiska_score
+
 
 
 
@@ -126,25 +126,25 @@ def display_scores(city_str, restaurant_str):
 
     while True:
         if   city_str == "1" and restaurant_str == "1":
-             print(nata.get_all_values())
+             print(tabulate(nata.get_all_values()))
              break
         elif restaurant_str == "2":
-             print(paradis.get_all_values())
+             print(tabulate(paradis.get_all_values()))
              break
         elif restaurant_str == "3":
-             print(frikkos.get_all_values())
+             print(tabulate(frikkos.get_all_values()))
              break
         elif restaurant_str == "4":
-             print(babylon.get_all_values())
+             print(tabulate(babylon.get_all_values()))
              break
         elif restaurant_str == "5":
-             print(yazhou.get_all_values())
+             print(tabulate(yazhou.get_all_values()))
              break
         elif restaurant_str == "6":
-             print(mommes.get_all_values())
+             print(tabulate(mommes.get_all_values()))
              break
         elif restaurant_str == "7":
-             print(libanesiska.get_all_values())
+             print(tabulate(libanesiska.get_all_values()))
              break
     return
 
@@ -154,9 +154,9 @@ def get_list():
     Will be used to calculate the average score
     And make the data more readable
     """
-    score_list = (nata_score, paradis_score, frikkos_score, babylon_score,\
-         yazhou_score, mommes_score, libanesiska_score)
-    for k, v in list(score_list)():
+    score_list = [nata_score, paradis_score, frikkos_score, babylon_score,\
+         yazhou_score, mommes_score, libanesiska_score]
+    for k, v in list[score_list]():
         print(k, v)
  
 def main():
