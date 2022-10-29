@@ -177,18 +177,63 @@ def display_scores(city_str, restaurant_str):
     #    print(k, v)
 ################################
 
-def average_score(nata):
+def average_score(nata_averages):
     """Calculates the average score for the selected restaurant"""
-    nata = [3,5,3,4,5]
-    sum_of_list = 0
-    for i in range(len(nata)):
-        sum_of_list += nata[i]
-        average = sum_of_list / len(nata)
-    average = average_score(nata)
-    return average
+    nata_averages = nata
+    nata_averages = [[3,5,3,4,5], [4,5,4,5,5], [4,4,2,5,5], [4,5,5,4,4], [4,4,3,4,5]]
+    zipped = zip(*nata_averages)
+    zipped_list = list(zipped)
+    print(zipped_list)
+    list_sums = nata_averages
+    list_sums = 0
+    for i in range(len(nata_averages)):
+        list_sums += nata_averages[i]
+      #  average = sum_of_list / len(nata_averages)
+        column_average = [ list_sums / len(nata_averages) for list_sums  in zip(*nata_averages)]
+    column_average = average_score(nata)
+    print(column_average)
+    return column_average
 
+# def Average(lst):
+#     sum_of_list = 0
+#     for i in range(len(lst)):
+#         sum_of_list += lst[i]
+#     average = sum_of_list / len(lst)
+#     return average
 
+# lst=[1,2,3,4,5]
+# average = Average(lst)
+# print(average)
 
+## why does the += work here but not above? 
+
+def get_total_score():
+    """Displays the average score for the selected restaurant"""
+    print("Would you like to see the total score?\n")
+    total_score = input("Enter Y or N\n")
+    while True:
+        if total_score == "Y":
+            print("The total score for the selected restaurant is:\n")
+        #print(function)
+            break
+        elif total_score == "N":
+            print("Thank you for using the program!\n")
+            break
+        else:
+            print("Try again, please enter Y or N\n")
+            total_score = input("Enter Y or N\n")
+            continue
+    return
+
+def play_again():
+    print("Would you like to see the scores for another restaurant?\n")
+    repeat_game = input("Enter Y or N\n")
+    while True:
+        if repeat_game == "Y":
+            get_city()
+            continue
+        elif repeat_game == "N":
+            print("Thank you for using the program!\n")
 
 
 
@@ -288,7 +333,8 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
-    average_score(nata)
+    nata_averages = nata
+    average_score(nata_averages)
 
 main()
 
