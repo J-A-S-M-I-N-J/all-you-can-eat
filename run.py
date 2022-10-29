@@ -125,91 +125,66 @@ def display_scores(city_str, restaurant_str):
     print("Here are the scores for the selected restaurant:\n")
 
     while True:
-        if   city_str == "1" and restaurant_str == "1":
-             print(tabulate(nata_score, tablefmt="grid"))
-             break
+        if  city_str == "1" and restaurant_str == "1":
+            print(tabulate(nata_score, tablefmt="grid"))
+            break
         elif restaurant_str == "2":
-             print(tabulate(paradis_score, tablefmt="grid"))
-             break
+            print(tabulate(paradis_score, tablefmt="grid"))
+            break
         elif restaurant_str == "3":
-             print(tabulate(frikkos_score, tablefmt="grid"))
-             break
+            print(tabulate(frikkos_score, tablefmt="grid"))
+            break
         elif restaurant_str == "4":
-             print(tabulate(babylon_score, tablefmt="grid"))
-             break
+            print(tabulate(babylon_score, tablefmt="grid"))
+            break
         elif restaurant_str == "5":
-             print(tabulate(yazhou_score, tablefmt="grid"))
-             break
+            print(tabulate(yazhou_score, tablefmt="grid"))
+            break
         elif restaurant_str == "6":
-             print(tabulate(mommes_score, tablefmt="grid"))
-             break
+            print(tabulate(mommes_score, tablefmt="grid"))
+            break
         elif restaurant_str == "7":
-             print(tabulate(libanesiska_score, tablefmt="grid"))
-             break   
+            print(tabulate(libanesiska_score, tablefmt="grid"))
+            break   
     return
 
-
-################################
-
-#def update_restaurant_data(nata, paradis, frikkos, babylon, yazhou, mommes, libanesiska):
-   # """Updates the restaurant data in google sheet"""
-   # print("Updating restaurant data...\n")
-   # nata.append_row(av_score)
-   # paradis.append_row(av_score)
-   # frikkos.append_row(av_score)
-   # babylon.append_row(av_score)
-   # yazhou.append_row(av_score)
-   # mommes.append_row(av_score)
-   # libanesiska.append_row(av_score)
-
-  #  print("Restaurant data updated successfully.\n")
-
-################################
-
- #def get_list():
-   # """
-   # Takes the data values from restaurant_score and lists them
-   # Will be used to calculate the average score
-   # And make the data more readable for the user"""
-    # score_list = (nata_score, paradis_score, frikkos_score, babylon_score,\
-        # yazhou_score, mommes_score, libanesiska_score)
-    # for k, v in list(score_list)():
-    #    print(k, v)
-################################
-
-def average_score(nata_averages):
-    """Calculates the average score for the selected restaurant"""
-    nata_averages = nata
-    nata_averages = [[3,5,3,4,5], [4,5,4,5,5], [4,4,2,5,5], [4,5,5,4,4], [4,4,3,4,5]]
-    zipped = zip(*nata_averages)
-    zipped_list = list(zipped)
-    print(zipped_list)
-    list_sums = nata_averages
-    list_sums = 0
-    for i in range(len(nata_averages)):
-        list_sums += nata_averages[i]
-      #  average = sum_of_list / len(nata_averages)
-        column_average = [ list_sums / len(nata_averages) for list_sums  in zip(*nata_averages)]
-    column_average = average_score(nata)
-    print(column_average)
-    return column_average
-
-# def Average(lst):
-#     sum_of_list = 0
-#     for i in range(len(lst)):
-#         sum_of_list += lst[i]
-#     average = sum_of_list / len(lst)
-#     return average
-
-# lst=[1,2,3,4,5]
-# average = Average(lst)
-# print(average)
-
-## why does the += work here but not above? 
+def print_restaurant_report(restaurant_averages):
+    """calculates column averages of restaurant and total restaurant score"""
+    restaurant_average_list = []
+    index = 0
+    for restaurant_average in restaurant_averages:
+        if index > 0 :
+            restaurant_average_list.append(list(map(int,restaurant_average)))
+        index = index + 1
+    list_sum = []
+    for data_list in restaurant_average_list:
+        element_sum = sum(data_list)
+        list_sum.append(element_sum)
+    index_y = 0
+    total_elements = len(restaurant_average_list)
+    while index_y < total_elements:
+        data_row = " "
+        index_x = 0
+        while index_x < total_elements:
+            data_row += str(restaurant_average_list[index_x][index_y]) + ""
+            index_x = index_x + 1
+      #  print(data_row)
+        index_y = index_y + 1
+    data_row = "   "
+    data_average = []
+    for data_sum in list_sum:
+        data_row +=  str(data_sum/total_elements) + "       "
+        data_average.append(data_sum/total_elements)
+    print(data_row)
+    total_average = sum(data_average)/len(data_average)
+    print("--------------------------------------------------")
+    print(f"Total Average: {total_average}")
+    print("--------------------------------------------------")
+    return
 
 def get_total_score():
     """Displays the average score for the selected restaurant"""
-    print("Would you like to see the total score?\n")
+    print("Would you like to see the average score?\n")
     total_score = input("Enter Y or N\n")
     while True:
         if total_score == "Y":
@@ -235,96 +210,6 @@ def play_again():
         elif repeat_game == "N":
             print("Thank you for using the program!\n")
 
-
-
-################################
-
-#def get_average():
-   # """ gets avg score """
-    #total_score = 0
-    #for i in range(len((nata_score))):
-       # total_score += i
-       # avg_score = total_score / len(nata_score)
-      #  nata.append_row([avg_score])
-   # return avg_score
-    
-    
-#print(get_average)
-
-################################
-
-#def get_average():
-    # """ gets avg score """
-  #  list_of_lists = [[nata_score], [paradis_score], [frikkos_score], [babylon_score], [yazhou_score], [mommes_score], [libanesiska_score]]
- #   for i in list_of_lists:
-   #     for j in i:
-     #       for k in j:
-       #         print(k)
-        #        print(sum(k)/len(k))
-         #       append_row([sum(k)/len(k)])
-   # return
-
-################################
-
-#def get_average():
-   # """Average score of lists"""
-  #  calc_avg = [xxx]
-    #print(range(len((nata_score))))
-    #for xxx in range(len((nata_score))):
-      #  xxx = [int() for num in nata_score]
-      #  average = sum()/len(nata_score)
-       # calc_avg = average
-      #  calc_avg.append.nata(calc_avg)
-       # return(calc_avg)
-  #  print("hope this  working")
-
-################################
-
-#def get_average():
-   # """Gets the average score for the selected restaurant"""
-  #  lst = []
-   # for ind in range(len(nata_score)):
-     #   num = ???
-     #   average = sum(num)/len(nata_score)
-     #   lst.append(average)
-     #   return(lst)
-  #  print(get_average())
-
-################################
-
-    #for n in (range(len((nata_score)))):
-    #numbers = int(input('Enter number '))
-    #lst.append(numbers)
-#print("Sum of elements in given list is :", sum(lst))
-
-################################
-
-#def get_average():
- #   """Calculates the average score for the selected restaurant"""
-   # print("calc avg wait")
-   # new_score = nata_score
-   # new_score = int(new_score)
-   # print(new_score)
-   # for i in [nata_score]:
-       # new_score += int(i)     
-        #average_score = new_score / len(new_score)
-        #print(average_score)
-       # return(average_score)
-################################
-
-#def get_average():
-#   """Gets the average score for the selected restaurant"""
-#  new_restaurant_score = []
-    #   for new_score in nata_score:
-    #      new_score = [int(num)for num in (nata_score)]
-    #      average = sum(new_score) / len(nata_score)
-    #      new_restaurant_score = average
-    #      return(new_restaurant_score)
-
-    #  new_restaurant_score.append(display_scores)
-    # print(new_restaurant_score) 
-################################
-
 def main():
     """
     Run all program functions
@@ -333,8 +218,13 @@ def main():
     city = get_city()
     restaurant = get_restaurant()
     display_scores(city, restaurant)
-    nata_averages = nata
-    average_score(nata_averages)
+    print_restaurant_report(nata_score)
+   # print_restaurant_report(paradis_score)
+   # print_restaurant_report(frikkos_score)
+   # print_restaurant_report(babylon_score)
+   # print_restaurant_report(yazhou_score)
+   # print_restaurant_report(mommes_score)
+  #  print_restaurant_report(libanesiska_score)
 
 main()
 
