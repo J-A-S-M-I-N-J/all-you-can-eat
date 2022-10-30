@@ -1,5 +1,6 @@
 from email.headerregistry import HeaderRegistry
 import numbers
+import sys
 from random import gammavariate
 from sqlite3 import ProgrammingError
 from tabulate import tabulate
@@ -51,20 +52,23 @@ def get_name():
             break
            
         else:
+            print("\n")
             print("I don't have all day...\n")
-            name_str = input("Name please:\n ")
+            print("\n")
+            name_str = input("Name please:\n\n")
 
         if  name_str.isalpha():
             print(f"Okay then, {name_str}! Let's get started.\n")
             inputValues.append_row([name_str])
             break
-            
         else:
-            print("No soup for you!\n")
-            break
-        
-    return name_str
-
+            try:
+                sys.exit()
+            except SystemExit:
+                print("In that case ...")
+            except:
+                print("No Soup For You!")
+                break
 def print_restaurant_report(restaurant_averages):
     """calculates column averages of restaurant and total restaurant score"""
     restaurant_average_list = []
