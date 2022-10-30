@@ -10,7 +10,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -49,9 +49,9 @@ bagdadkebab_score = bagdadkebab.get_all_values()
 etage_score = etage.get_all_values()
 
 
-
 print("\n")
 print("Are you hungry? Let us help you with that.\n")
+
 
 def get_name():
     """Gets the name from the user
@@ -62,14 +62,15 @@ def get_name():
     print("\n")
     email_str = input("And your e-mail please:\n\n")
     while True:
-        if  name_str.isalpha():
-            email_str.isalpha()
+        if name_str.isalpha() == True:
+            email_str.isalpha() == True
             print("\n")
             print(f"Okay then, {name_str}! Let's get started.\n\n")
             inputValues.append_row([name_str])
             inputValues.append_row([email_str])
             break
-        else: print("\n")
+        else:
+            print("\n")
         print("I don't have all day...\n")
         print("\n")
         input("Name please:\n\n")
@@ -89,6 +90,7 @@ def get_name():
                     print("No Soup For You!\n")
                     sys.exit()
 
+
 def print_restaurant_report(restaurant_averages):
     """calculates the average of column
     in each (non-placeholder) restaurant and 
@@ -96,8 +98,8 @@ def print_restaurant_report(restaurant_averages):
     restaurant_average_list = []
     index = 0
     for restaurant_average in restaurant_averages:
-        if index > 0 :
-            restaurant_average_list.append(list(map(int,restaurant_average)))
+        if index > 0:
+            restaurant_average_list.append(list(map(int, restaurant_average)))
         index = index + 1
     list_sum = []
     for data_list in restaurant_average_list:
@@ -115,7 +117,7 @@ def print_restaurant_report(restaurant_averages):
     data_row = "A: "
     data_average = []
     for data_sum in list_sum:
-        data_row +=  str(data_sum/total_elements) + "       "
+        data_row += str(data_sum/total_elements) + "       "
         data_average.append(data_sum/total_elements)
     print(data_row)
     total_average = sum(data_average)/len(data_average)
@@ -124,12 +126,14 @@ def print_restaurant_report(restaurant_averages):
     print("--------------------------------------------------")
     return
 
+
 def get_city():
     """Gets the city from the user
     and then displays the restaurants in that city
     will touch on the city_str variable in README"""
     print("\n")
-    city_str = input("Select City, Enter a number:\n\n1. Helsingborg\n2. Göteborg\n3. Malmö\n\n")
+    city_str = input(
+        "Select City, Enter a number:\n\n1. Helsingborg\n2. Göteborg\n3. Malmö\n\n")
     while True:
         if city_str == "1":
             print("\n")
@@ -142,7 +146,8 @@ def get_city():
                     print("\n")
                     print("You have chosen Göteborg.\n")
                     print("\n\n")
-                    city_str = input("Restaurants in Göteborg:\n 1. McDonalds\n 2. Maxham\n\n")
+                    city_str = input(
+                        "Restaurants in Göteborg:\n 1. McDonalds\n 2. Maxham\n\n")
                     break
         elif city_str == "3":
             while True:
@@ -150,19 +155,23 @@ def get_city():
                     print("\n")
                     print("You have chosen Malmö.\n")
                     print("\n\n")
-                    city_str = input("Restaurants in Malmö:\n 1. Chicago\n 2. Yalla Yalla\n 3. Bagdad Kebab\n 4. Etage\n\n")
+                    city_str = input(
+                        "Restaurants in Malmö:\n 1. Chicago\n 2. Yalla Yalla\n 3. Bagdad Kebab\n 4. Etage\n\n")
                     break
         else:
             print("\n")
             print("Try again, please select a number between 1-3\n")
-            city_str = input("City?\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
+            city_str = input(
+                "City?\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
             continue
     return city_str
+
 
 def get_restaurant(city_str):
     """Has an input for the user to select a restaurant
     and then prints a message confirming the selection"""
-    restaurant_str = input("Select a restaurant to see score!\n\n1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n\n")
+    restaurant_str = input(
+        "Select a restaurant to see score!\n\n1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n\n")
 
     while True:
         if city_str == "1" and restaurant_str == "1":
@@ -220,9 +229,11 @@ def get_restaurant(city_str):
         else:
             print("\n")
             print("Try again.\n")
-            restaurant_str = input("Which restaurant do you want to see?\n\n1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n ")
+            restaurant_str = input(
+                "Which restaurant do you want to see?\n\n1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n ")
             continue
     return restaurant_str
+
 
 def display_scores(city_str, restaurant_str):
     """Displays the inputs from survey for the selected restaurant
@@ -230,7 +241,7 @@ def display_scores(city_str, restaurant_str):
     print("Here are the scores for the selected restaurant:\n")
 
     while True:
-        if  city_str == "1" and restaurant_str == "1":
+        if city_str == "1" and restaurant_str == "1":
             print(tabulate(nata_score, tablefmt="grid"))
             break
         elif restaurant_str == "2":
@@ -253,11 +264,12 @@ def display_scores(city_str, restaurant_str):
             break
     return
 
+
 def get_restaurant_average_values(city_str, restaurant_str):
     """Returns the average values for the selected restaurant"""
 
     while True:
-        if  city_str == "1" and restaurant_str == "1":
+        if city_str == "1" and restaurant_str == "1":
             return nata_score
         elif restaurant_str == "2":
             return paradis_score
@@ -272,18 +284,22 @@ def get_restaurant_average_values(city_str, restaurant_str):
         elif restaurant_str == "7":
             return libanesiska_score
         break
+
+
 def start_over():
     """Restarts the program and makes the program loop
     until the user chooses to quit"""
-    play_again_str = input("Would you like to view more restaurants?\n\n 1. Yes\n 2. No\n\n")
+    play_again_str = input(
+        "Would you like to view more restaurants?\n\n 1. Yes\n 2. No\n\n")
     while True:
-        if  play_again_str == "1":
+        if play_again_str == "1":
             print("\n")
             print("Moving on...\n")
             city = get_city()
             restaurant = get_restaurant(city)
             display_scores(city, restaurant)
-            restaurant_to_print = get_restaurant_average_values(city, restaurant)
+            restaurant_to_print = get_restaurant_average_values(
+                city, restaurant)
             print_restaurant_report(restaurant_to_print)
             start_over()
             break
@@ -296,6 +312,7 @@ def start_over():
             print("Try again.\n")
             play_again_str = input("Try again:\n\n 1. Yes\n 2. No\n\n ")
             print(play_again_str)
+
 
 def main():
     """
@@ -311,10 +328,13 @@ def main():
             city = get_city()
             restaurant = get_restaurant(city)
             display_scores(city, restaurant)
-            restaurant_to_print = get_restaurant_average_values(city, restaurant)
+            restaurant_to_print = get_restaurant_average_values(
+                city, restaurant)
             print_restaurant_report(restaurant_to_print)
             start_over()
+
+
 main()
 
-#collect email?
+# collect email?
 # print(tabulate(table, headers=["Taste" "Care" "Clean "Price" Speed"]))

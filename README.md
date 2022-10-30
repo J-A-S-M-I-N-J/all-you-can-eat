@@ -13,39 +13,36 @@
 ### Existing Features
 
 ### Data Collection
- - Collect and maintain data. Uses google.sheets to gather information and collects name and e-mail for google.sheets aswell. 
+- Collect and maintain data. Uses google.sheets to gather information and collects name and e-mail for google.sheets aswell. 
 
 ### Validation
- - Shuts down if player refuses to give proper name values
- - Gives feedback if numerical inputs aren't within the scope.
- - Validates through print-messages whenever you choose something and provides several options in most cases.
+- Shuts down if player refuses to give proper name values
+- Gives feedback if numerical inputs aren't within the scope.
+- Validates through print-messages whenever you choose something and provides several options in most cases.
 
 ### Calculation
- - Calculates the values of the columns for each restaurant. 
- - Calculates total averages. 
+- Calculates the values of the columns for each restaurant. 
+- Calculates total averages. 
 
 ### Play Forever
- - The program is looped and the only time you can exit is:
-   - By not giving correct name values.
-   - User opts to quit. 
+- The program is looped and the only time you can exit is:
+- By not giving correct name values.
+- User opts to quit. 
 
 ### Future Features
- - A separate list where the total scores of all restaurants can be viewed
- - Update autonomously and through any length and categories.
- - More cities and restaurants.
+- A separate list where the total scores of all restaurants can be viewed
+- Update autonomously and through any length and categories.
+- More cities and restaurants.
 
 ## Data Model / Methods / Libraries
 
- - All You Can Eat hasn't imported any extensive data models or classes, but uses classes like: list & map aswell as systemExit to terminate the game. 
- - Methods that are in use are to help manage lists like: append, get.all.values and then also isAlpha for the name input fields. 
- - The program however uses tabular as a tool to help print a finer, more structured terminal and was easy to use. During my project I have stumbled upon Panda which I probably will look deeper into the next time I work with python. 
+- All You Can Eat hasn't imported any extensive data models or classes, but uses classes like: list & map aswell as systemExit to terminate the game. 
+- Methods that are in use are to help manage lists like: append, get.all.values and then also isAlpha for the name input fields. 
+- The program however uses tabular as a tool to help print a finer, more structured terminal and was easy to use. During my project I have stumbled upon Panda which I probably will look deeper into the next time I work with python. 
  
- ## Testing
-- I have manually tested the project
-  - Passed the code through...
-  - Given invalid inputs at different stages.
-  - Ran the program over 500 recorded times during project to try all validations
-  and made all the calculations manually aswell. 
+## Testing
+- Installed/imported pep8 and used it to Validate my code.
+- Ran the program over 500 recorded times during project to try all validations and made all the calculations manually aswell. 
 
 <img> ![Grid & Averages](images/grid_average.png)
 
@@ -53,14 +50,17 @@
 
 ### Solved Bugs
   
-  - The biggest challenge was creating the for loop used to calculate averages using flow control and encoding the classes and using elements to do the correct math. No large bugs or errors here, just tough logic.  
+- The biggest challenge was creating the for loop used to calculate averages using flow control and encoding the classes and using elements to do the correct math. No large bugs or errors here, just tough logic.  
 
-  - The program had a "bug" where even if you would use the input to go back and view more restaurants the functions would only print the next page and the content was not interactive. This was solved through looping all main functions (except name) and then having a different loop 'restart' the program.
+- The program had a "bug" where even if you would use the input to go back and view more restaurants the functions would only print the next page and the content was not interactive. This was solved through looping all main functions (except name) and then having a different loop 'restart' the program.
   
-  ### Remaining bugs
+### Remaining bugs
 
-  - My scope was originally 7 restaurants in one city, but nearing the end I added some extra cities and restaurants at first as placeholder to give the program some more weight, however these do not work as intended. Towards the end after I had polished the code I still wanted to make atleast one more city interactive but due to my inital scope I had not planned ahead of time to a future where the program would expand. The variable 'city_str' became a variable for too much data which made it too time-consuming and difficult to edit by the end. In retrospect I should have better separated variables and made smaller functions instead of trying to do too much at once.  
+- My scope was originally 7 restaurants in one city, but nearing the end I added some extra cities and restaurants at first as placeholder to give the program some more weight, however these do not work as intended. Towards the end after I had polished the code I still wanted to make atleast one more city interactive but due to my inital scope I had not planned ahead of time to a future where the program would expand. The variable 'city_str' became a variable for too much data which made it too time-consuming and difficult to edit by the end. In retrospect I should have better separated variables and made smaller functions instead of trying to do too much at once.  
 
+- isAlpha runs an error-message suggesting I change the syntax however after testing current method is the one that works. 
+
+- Fixes suggests that I have unused imports, not sure how they got there, don't want to risque damaging my project by removing anything. 
 
 ## Credits
 ---
