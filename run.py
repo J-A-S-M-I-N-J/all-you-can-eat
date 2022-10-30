@@ -1,6 +1,7 @@
 from email.headerregistry import HeaderRegistry
 from random import gammavariate
 from sqlite3 import ProgrammingError
+import sys
 from tabulate import tabulate
 import gspread
 from google.oauth2.service_account import Credentials
@@ -15,6 +16,8 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('the_fastfood_survey')
+
+# All the worksheets and their variables to call them
 
 nata = SHEET.worksheet('nata')
 paradis = SHEET.worksheet('paradis')
@@ -52,14 +55,19 @@ print("Are you hungry? Let us help you with that.\n")
 
 def get_name():
     """Gets the name from the user
-    and adds the input to google sheet"""
+    and adds the input to google sheet to see
+    who used the program"""
     print("\n")
-    name_str = input("Enter your name please:\n\n")
+    name_str = input("Enter your name:\n\n")
+    print("\n")
+    email_str = input("And your e-mail please:\n\n")
     while True:
-        if  name_str.isalpha() == True:
+        if  name_str.isalpha():
+            email_str.isalpha()
             print("\n")
             print(f"Okay then, {name_str}! Let's get started.\n\n")
             inputValues.append_row([name_str])
+            inputValues.append_row([email_str])
             break
         else: print("\n")
         print("I don't have all day...\n")
@@ -71,19 +79,20 @@ def get_name():
                 inputValues.append_row([name_str])
                 break
             else:
-                import sys
                 try:
                     sys.exit()
                 except SystemExit:
+                    print('\n')
                     print("In that case ...\n")
                     break
                 finally:
                     print("No Soup For You!\n")
                     sys.exit()
-                
 
 def print_restaurant_report(restaurant_averages):
-    """calculates column averages of restaurant and total restaurant score"""
+    """calculates the average of column
+    in each (non-placeholder) restaurant and 
+    then sums all the values for a total average score"""
     restaurant_average_list = []
     index = 0
     for restaurant_average in restaurant_averages:
@@ -102,7 +111,6 @@ def print_restaurant_report(restaurant_averages):
         while index_x < total_elements:
             data_row += str(restaurant_average_list[index_x][index_y]) + ""
             index_x = index_x + 1
-      #  print(data_row)
         index_y = index_y + 1
     data_row = "A: "
     data_average = []
@@ -118,77 +126,107 @@ def print_restaurant_report(restaurant_averages):
 
 def get_city():
     """Gets the city from the user
-    and then displays the restaurants in that city"""
-    city_str = input("Pick a city in the list. Enter a number:\n\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n\n")
+    and then displays the restaurants in that city
+    will touch on the city_str variable in README"""
+    print("\n")
+    city_str = input("Select City, Enter a number:\n\n1. Helsingborg\n2. Göteborg\n3. Malmö\n\n")
     while True:
         if city_str == "1":
             print("\n")
             print("You have chosen Helsingborg.\n")
-            print("Here are the restaurants in Helsingborg:\n")
+            print("Restaurants in Helsingborg:\n")
             break
         elif city_str == "2":
-            print("\n")
-            print("You have chosen Göteborg.\n")
-            print("Here are the restaurants in Göteborg:\n")
-            break
+            while True:
+                if city_str == "2":
+                    print("\n")
+                    print("You have chosen Göteborg.\n")
+                    print("\n\n")
+                    city_str = input("Restaurants in Göteborg:\n 1. McDonalds\n 2. Maxham\n\n")
+                    break
         elif city_str == "3":
-            print("\n")
-            print("You have chosen Malmö.\n")
-            print("Here are the restaurants in Malmö:\n")
-            break
+            while True:
+                if city_str == "3":
+                    print("\n")
+                    print("You have chosen Malmö.\n")
+                    print("\n\n")
+                    city_str = input("Restaurants in Malmö:\n 1. Chicago\n 2. Yalla Yalla\n 3. Bagdad Kebab\n 4. Etage\n\n")
+                    break
         else:
             print("\n")
             print("Try again, please select a number between 1-3\n")
-            city_str = input("City?\n 1. Helsingborg\n 2. Placeholder\n 3. Placeholder2\n ")
+            city_str = input("City?\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n ")
             continue
     return city_str
 
-# print(get_city())
+def get_restaurant(city_str):
+    """Has an input for the user to select a restaurant
+    and then prints a message confirming the selection"""
+    restaurant_str = input("Select a restaurant to see score!\n\n1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n\n")
 
-def get_restaurant():
-    """Gets the restaurant from the user"""
-    restaurant_str = input("Select a restaurant from 1-7 to see their score!\n\n 1. Nata\n 2. Paradis\n 3. Frikkos\n 4. Babylon\n 5. Yazhou\n 6. Mommes\n 7. Libanesiska\n\n")
     while True:
-        if restaurant_str == "1":
+        if city_str == "1" and restaurant_str == "1":
             print("\n")
             print("You have chosen Nata.\n")
             break
-        elif restaurant_str == "2":
+        elif city_str == "1" and restaurant_str == "2":
             print("\n")
             print("You have chosen Paradis.\n")
             break
-        elif restaurant_str == "3":
+        elif city_str == "1" and restaurant_str == "3":
             print("\n")
             print("You have chosen Frikkos.\n")
             break
-        elif restaurant_str == "4":
+        elif city_str == "1" and restaurant_str == "4":
             print("\n")
             print("You have chosen Babylon.\n")
             break
-        elif restaurant_str == "5":
+        elif city_str == "1" and restaurant_str == "5":
             print("\n")
             print("You have chosen Yazhou.\n")
             break
-        elif restaurant_str == "6":
+        elif city_str == "1" and restaurant_str == "6":
             print("\n")
             print("You have chosen Mommes.\n")
             break
-        elif restaurant_str == "7":
+        elif city_str == "1" and restaurant_str == "7":
             print("\n")
             print("You have chosen Libanesiska.\n\n")
             break
+        elif city_str == "2" and restaurant_str == "1":
+            print("\n")
+            print("You have chosen McDonalds.\n")
+            break
+        elif city_str == "2" and restaurant_str == "2":
+            print("\n")
+            print("You have chosen Maxham.\n")
+            break
+        elif city_str == "3" and restaurant_str == "1":
+            print("\n")
+            print("You have chosen Chicago.\n")
+            break
+        elif city_str == "3" and restaurant_str == "2":
+            print("\n")
+            print("You have chosen Yalla Yalla.\n")
+            break
+        elif city_str == "3" and restaurant_str == "3":
+            print("\n")
+            print("You have chosen Bagdad Kebab.\n")
+            break
+        elif city_str == "3" and restaurant_str == "4":
+            print("\n")
+            print("You have chosen Etage.\n")
+            break
         else:
             print("\n")
-            print("Try again, please select a number between 1-7\n")
-            restaurant_str = input("Which restaurant do you want to see?\n\n  1. Nata\n 2. Paradis\n 3. Frikkos\n 4. Babylon\n 5. Yazhou\n 6. Mommes\n 7. Libanesiska\n ")
+            print("Try again.\n")
+            restaurant_str = input("Which restaurant do you want to see?\n\n1. Nata\n2. Paradis\n3. Frikkos\n4. Babylon\n5. Yazhou\n6. Mommes\n7. Libanesiska\n ")
             continue
     return restaurant_str
 
-# print (get_restaurant())
-
 def display_scores(city_str, restaurant_str):
-    """Displays the scores for the selected restaurant
-    also has the tabulate library applied to make it look nice""" # replicate data 
+    """Displays the inputs from survey for the selected restaurant
+    uses the tabulate library to create grid for styling"""
     print("Here are the scores for the selected restaurant:\n")
 
     while True:
@@ -212,38 +250,41 @@ def display_scores(city_str, restaurant_str):
             break
         elif restaurant_str == "7":
             print(tabulate(libanesiska_score, tablefmt="grid"))
-            break   
+            break
     return
 
 def get_restaurant_average_values(city_str, restaurant_str):
-    """Gets the average values for the selected restaurant"""
+    """Returns the average values for the selected restaurant"""
+
     while True:
         if  city_str == "1" and restaurant_str == "1":
-                return nata_score
+            return nata_score
         elif restaurant_str == "2":
-                return paradis_score
+            return paradis_score
         elif restaurant_str == "3":
-                return frikkos_score
+            return frikkos_score
         elif restaurant_str == "4":
-                return babylon_score
+            return babylon_score
         elif restaurant_str == "5":
-                return yazhou_score
+            return yazhou_score
         elif restaurant_str == "6":
-                return mommes_score
+            return mommes_score
         elif restaurant_str == "7":
-                return libanesiska_score
+            return libanesiska_score
         break
 def start_over():
-    """Restarts the program"""
+    """Restarts the program and makes the program loop
+    until the user chooses to quit"""
     play_again_str = input("Would you like to view more restaurants?\n\n 1. Yes\n 2. No\n\n")
     while True:
         if  play_again_str == "1":
+            print("\n")
             print("Moving on...\n")
             city = get_city()
-            restaurant = get_restaurant()
+            restaurant = get_restaurant(city)
             display_scores(city, restaurant)
-            restaurantToPrint = get_restaurant_average_values(city, restaurant)
-            print_restaurant_report(restaurantToPrint)
+            restaurant_to_print = get_restaurant_average_values(city, restaurant)
+            print_restaurant_report(restaurant_to_print)
             start_over()
             break
         elif play_again_str == "2":
@@ -252,50 +293,28 @@ def start_over():
             break
         else:
             print("\n")
-            print("Try again, please select a number between 1-3\n")
-            play_again_str = input("Try again:\n\n 1. City\n 2. Restaurant\n 3. Quit\n\n ")
+            print("Try again.\n")
+            play_again_str = input("Try again:\n\n 1. Yes\n 2. No\n\n ")
             print(play_again_str)
 
 def main():
     """
-    Run all program functions
+    Runs all program functions
+    Inside a while loop
     """
+    get_name()
     while True:
         quit = input("Enter any key to continue, or 0 to quit:\n\n")
         if quit == "0":
-            break 
+            break
         else:
-            get_name()
             city = get_city()
-            restaurant = get_restaurant()
+            restaurant = get_restaurant(city)
             display_scores(city, restaurant)
-            restaurantToPrint = get_restaurant_average_values(city, restaurant)
-            print_restaurant_report(restaurantToPrint)
+            restaurant_to_print = get_restaurant_average_values(city, restaurant)
+            print_restaurant_report(restaurant_to_print)
             start_over()
 main()
 
-
-
-
-#restaurant_averages.append(["Restaurant", "Food", "Service", "Atmosphere", "Price", "Total"])
-
-# Display list of cities and validate their choice
-
-# Present the user with the list of restaurants and ask them to select one, validate their choice
-
-# Collect collumns of data from the chosen restaurant from the spreadsheet and present individual scores 
-# and total scores. Validate their choice.
-
-# Ask if they wish to proceed, if yes: remove the restaurants they have already selected from the list
-# add another option in the list, view total scores for all restaurants. 
-# add another option in the list, that exits the program.
-# if no: ask for name and what restaurant they want to eat at.
-# add the name and restaurant to a tab in the spreadsheet, validate their answer and exit the program.
-
-# Repeat until user has viewed the scores for all restaurants, 
-# or until they decide on the restaurant and exit the program.
-
-# When user has decided on a restaurant, ask them where they will eat and then exit the program.
-
-# Validate their answer, and save restaurant where they will eat in a tab in the spreadsheet.
- 
+#collect email?
+# print(tabulate(table, headers=["Taste" "Care" "Clean "Price" Speed"]))
