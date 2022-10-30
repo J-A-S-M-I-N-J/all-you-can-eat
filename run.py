@@ -41,7 +41,8 @@ print("Are you hungry? Let us help you with that.\n")
 def get_name():
     """Gets the name from the user
     and adds the input to google sheet"""
-    name_str = input("But first, enter your name:\n\n")
+    print("\n")
+    name_str = input("Enter your name please:\n\n")
     while True:
         if  name_str.isalpha() == True:
             print("\n")
@@ -94,14 +95,14 @@ def print_restaurant_report(restaurant_averages):
     print(data_row)
     total_average = sum(data_average)/len(data_average)
     print("--------------------------------------------------")
-    print(f"                Total Average: {total_average}")
+    print(f"                Total Average: {round(total_average,1)}")
     print("--------------------------------------------------")
     return
 
 def get_city():
     """Gets the city from the user
     and then displays the restaurants in that city"""
-    city_str = input("Where are you located? Enter a number:\n\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n\n")
+    city_str = input("Pick a city in the list. Enter a number:\n\n 1. Helsingborg\n 2. Göteborg\n 3. Malmö\n\n")
     while True:
         if city_str == "1":
             print("\n")
@@ -197,27 +198,6 @@ def display_scores(city_str, restaurant_str):
             break   
     return
 
-def choose_if_average():
-    """Gets the average from the user"""
-    average_str = input("Do you want to see the average score for the restaurant? Enter a number:\n\n 1. Yes\n 2. No\n\n")
-    while True:
-        if average_str == "1":
-            print("\n")
-            print("You have chosen Yes.\n")
-            print("Here is the average score for the restaurant:\n")
-            break
-        elif average_str == "2":
-            print("\n")
-            print("You have chosen No.\n")
-            print("Okay then, goodbye!\n")
-            break
-        else:
-            print("\n")
-            print("Try again, please select a number between 1-2\n")
-            average_str = input("Do you want to see the average score for the restaurant?\n\n 1. Yes\n 2. No\n ")
-            continue
-    return average_str
-
 def get_restaurant_average_values(city_str, restaurant_str):
     """Gets the average values for the selected restaurant"""
     while True:
@@ -238,43 +218,43 @@ def get_restaurant_average_values(city_str, restaurant_str):
         break
 def start_over():
     """Restarts the program"""
-    play_again_str = input("Would you like to view more restaurants? Please select:\n\n 1. City\n 2. Restaurant\n 3. Quit\n\n")
+    play_again_str = input("Would you like to view more restaurants?\n\n 1. Yes\n 2. No\n\n")
     while True:
         if  play_again_str == "1":
-            print("You have chosen to view another city.\n")
-            get_city()
-            continue
+            print("Moving on...\n")
+            city = get_city()
+            restaurant = get_restaurant()
+            display_scores(city, restaurant)
+            restaurantToPrint = get_restaurant_average_values(city, restaurant)
+            print_restaurant_report(restaurantToPrint)
+            start_over()
+            break
         elif play_again_str == "2":
             print("\n")
-            print("You have chosen to view another restaurant.\n")
-            get_restaurant()
-            continue
-        elif play_again_str == "3":
-            print("\n")
             print("Very well then...\n")
-            print("Goodbye!\n")
             break
         else:
             print("\n")
             print("Try again, please select a number between 1-3\n")
-            play_again_str = input("Try again:\n\n 1. City\n 2. Restaurant\n 3. Exit\n\n ")
-        return play_again_str
+            play_again_str = input("Try again:\n\n 1. City\n 2. Restaurant\n 3. Quit\n\n ")
+            print(play_again_str)
 
 def main():
     """
     Run all program functions
     """
     while True:
-        quit = input("Press Q to quit or any other key to continue: ")
-        get_name()
-        city = get_city()
-        restaurant = get_restaurant()
-        display_scores(city, restaurant)
-        restaurantToPrint = get_restaurant_average_values(city, restaurant)
-        print_restaurant_report(restaurantToPrint)
-        start_over()
-        if quit == "Q":
-            break  
+        quit = input("Enter any key to continue, or 0 to quit:\n\n")
+        if quit == "0":
+            break 
+        else:
+            get_name()
+            city = get_city()
+            restaurant = get_restaurant()
+            display_scores(city, restaurant)
+            restaurantToPrint = get_restaurant_average_values(city, restaurant)
+            print_restaurant_report(restaurantToPrint)
+            start_over()
 main()
 
 
